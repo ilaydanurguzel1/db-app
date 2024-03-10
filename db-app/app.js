@@ -1,15 +1,23 @@
 "use strict";
 const express = require("express");
-const dbConnection = require("./helper/mysql");
+const dbConnection = require("./helper/postgresql");
 
 const app = express();
 
-//check db connection
-dbConnection.getConnection((err, connection) => {
+// check db connection
+// dbConnection.getConnection((err, connection) => {
+//   if (err) {
+//     console.log("Database connection error: ", err);
+//   } else {
+//     console.log("Database connected");
+//   }
+// });
+
+dbConnection.connect((err) => {
   if (err) {
-    console.log("Database connection error: ", err);
+    console.error('Database connection error:', err);
   } else {
-    console.log("Database connected");
+    console.log('Database connected');
   }
 });
 
